@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body style="
+  background-image: url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: fixed;
+  overflow-x: hidden;
+">
+  <header class="text-gray-400 bg-gray-900 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <img src="https://cdn-icons-png.flaticon.com/512/6146/6146584.png" alt="Logo"
+          class="w-12 h-12 text-white p-2 bg-blue-500 rounded-full">
+        <span class="ml-3 text-xl">GeoSpotter <i class="text-slate-500">Elite</i></span>
+      </a>
+      <nav
+        class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700	flex flex-wrap items-center text-base justify-center">
+        <a class="mr-5 text-white">Home</a>
+        <a class="mr-5 hover:text-white">Developer</a>
+        <a class="mr-5 hover:text-white">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <div class="flex my-auto flex-col items-center justify-center px-5 mx-auto mt-48 lg:py-0">
+    <div
+      class="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-indigo-700">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          Enter the IP Address
+        </h1>
+        <form class="space-y-4 md:space-y-6" method="post" action="/">
+          {% csrf_token %}
+          <div>
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">IP Address</label>
+            <input type="text" name="ip" id="ip"
+              class=" text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:border-indigo-500"
+              placeholder="IP address" required style="border:none;" />
+            
+            <button type="submit"
+              class="w-full mt-3 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+              Track
+            </button>
+            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              Developed by <a class="text-blue-600" href="https://brezwagtiga.pythonanywhere.com/shaurya/">Shaurya Samant</a>
+            </p>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    alert('The entered IP address is invalid. Please try again.')
+  </script>
+</body>
+
+</html>

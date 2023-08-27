@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Welcome to GeoSpotter Elite - Track IP Address</title>
+</head>
+
+<body style="
+  background-image: url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: fixed;
+  overflow-x: hidden;
+">
+  <header class="text-gray-400 bg-gray-900 body-font">
+    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+      <a href="/" class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+        <img src="https://cdn-icons-png.flaticon.com/512/6146/6146584.png" alt="Logo"
+          class="w-12 h-12 text-white p-2 bg-blue-500 rounded-full">
+        <span class="ml-3 text-xl">GeoSpotter <i class="text-slate-500">Elite</i></span>
+      </a>
+      <nav
+        class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700	flex flex-wrap items-center text-base justify-center">
+        <a class="mr-5 text-white" href="/">Home</a>
+        <a class="mr-5 hover:text-white" href="https://brezwagtiga.pythonanywhere.com/shaurya/">Developer</a>
+        <a class="mr-5 hover:text-white" href="/contact/">Contact</a>
+      </nav>
+    </div>
+  </header>
+  {% if valid %}
+  <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true" id="modal">
+    <!--
+      Background backdrop, show/hide based on modal state.
+  
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div class="fixed inset-0 bg-slate-900 bg-opacity-75 transition-opacity"></div>
+  
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <!--
+          Modal panel, show/hide based on modal state.
+  
+          Entering: "ease-out duration-300"
+            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            To: "opacity-100 translate-y-0 sm:scale-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100 translate-y-0 sm:scale-100"
+            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        -->
+        <div class="relative transform overflow-hidden rounded-lg bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+          <div class="bg-slate-800 px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+            <div class="sm:flex sm:items-start">
+              <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+                <img src="https://cdn-icons-png.flaticon.com/512/6146/6146584.png" alt="Logo"
+                  class="w-12 h-12 text-white p-2 bg-blue-500 rounded-full">
+              </a>
+              <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                <h3 class="text-base font-semibold leading-6 text-white" id="modal-title">IP address details</h3>
+                <div class="mt-2">
+                  <!-- <p class="text-sm text-gray-500">Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.</p> -->
+                  <form>
+                    <textarea class="bg-slate-900 outline-none px-3 text-slate-400 rounded-xl" cols="50" rows="10"
+                    readonly>{% for key, value in data %} {{key|capfirst}}: {{value}} &#13;&#10;  {% endfor %} </textarea>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-slate-800 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto" onclick="document.getElementById('modal').style.display = 'none';">Done</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <script>
+    alert('{% for key, value in data %} {{key}}: {{value}} \n {% endfor %}')
+  </script> -->
+  {% endif %}
+  <div class="flex my-auto flex-col items-center justify-center px-5 mx-auto mt-48 lg:py-0">
+    <div
+      class="w-full rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-indigo-700">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          Enter the IP Address
+        </h1>
+        <form class="space-y-4 md:space-y-6" method="post" action="/">
+          {% csrf_token %}
+          <div>
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">IP Address</label>
+            <input type="text" name="ip" id="ip"
+              class=" text-gray-900 sm:text-sm rounded-lg block w-full p-2.5 bg-gray-700 placeholder-gray-400 dark:text-white focus:outline-none focus:ring focus:border-indigo-500"
+              placeholder="IP address" required style="border:none;" />
+            
+            <button type="submit"
+              class="w-full mt-3 hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+              Track
+            </button>
+            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+              Developed by <a class="text-blue-600" href="https://brezwagtiga.pythonanywhere.com/shaurya/">Shaurya Samant</a>
+            </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
